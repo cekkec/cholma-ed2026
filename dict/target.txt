@@ -1,0 +1,15 @@
+0:gallbladder
+1:cystic_plate
+2:cystic_duct
+3:cystic_artery
+4:cystic_pedicle
+5:blood_vessel
+6:fluid
+7:abdominal_wall_cavity
+8:liver
+9:adhesion
+10:omentum
+11:peritoneum
+12:gut
+13:specimen_bag
+14:null_target

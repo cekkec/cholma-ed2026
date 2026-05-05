@@ -1,0 +1,10 @@
+0:grasp
+1:retract
+2:dissect
+3:coagulate
+4:clip
+5:cut
+6:aspirate
+7:irrigate
+8:pack
+9:null_verb

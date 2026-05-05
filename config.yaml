@@ -1,0 +1,112 @@
+# =========================
+# Paths
+# =========================
+parent_path: ../CholecT50
+train_path: data/
+
+data_base_dir: ./annotation
+output_base_dir: ./
+
+map_file_path: ./dict/maps.txt
+
+# CA:Complete-Agreement # MA:Majority-Agreement # Soft
+train_strategy: Soft
+train_csv_file: CholMA_${train_strategy}.csv
+train_csv_path: ${data_base_dir}/${train_csv_file}
+
+val_strategies:
+  - Soft
+
+
+val_csv_template: CholMA_{strategy}.csv
+val_data_mode: "intersection"
+
+exp_name: train_${train_strategy}_val_${val_strategies}
+output_dir: ${output_base_dir}/${exp_name}
+
+norm_mean: [0.485, 0.456, 0.406]
+norm_std:  [0.229, 0.224, 0.225]
+
+# =========================
+# Main Parsers
+# =========================
+epochs: 1
+heads: ["ivt"]
+ckpt_metric: "tri"
+
+# =========================
+# Run / General
+# =========================
+exp: myexp
+device: cuda:0
+seed: 142
+nworkers: 4
+shuffle: true
+
+# =========================
+# Data Split
+# =========================
+split_selector: cholect50-crossval
+n_fold: 5
+start_n_fold: 0
+trn_fold:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+
+# =========================
+# Model
+# =========================
+model_name: swin_base_patch4_window7_224
+pretrained: true
+
+n_inst: 6     
+n_verb: 10    
+n_target: 15  
+n_triple: 156 
+
+# =========================
+# Image / Augmentation
+# =========================
+img_size: 224
+height: 224
+width: 224
+base_aug: true
+cutout: false
+mixup: false
+alpha: 0.4
+ 
+# =========================
+# Optimization
+# =========================
+batch_size: 32
+valid_batch_size: 32
+lr: 2e-4
+min_lr: 2e-5
+weight_decay: 1e-6
+use_scheduler: true
+T_0: 21
+gradient_accumulation_steps: 2
+
+# =========================
+# Loss
+# =========================
+loss: bce
+loss_weights: { i: 1.0, v: 1.0, t: 1.0, ivt: 1.0 }
+
+# =========================
+# Flags
+# =========================
+multi: true
+evaluate_all: false
+ignore_null: false
+
+# =========================
+# Evaluation
+# =========================
+inference: false
+ensemble: false
+ensemble_avg: true
+ensemble_models: []

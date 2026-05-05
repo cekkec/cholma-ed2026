@@ -1,0 +1,7 @@
+-1:null_instrument
+0:grasper
+1:bipolar
+2:hook
+3:scissors
+4:clipper
+5:irrigator
